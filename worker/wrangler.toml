@@ -1,0 +1,13 @@
+name = "jdecommitee-worker"
+main = "src/index.ts"
+compatibility_date = "2024-10-22"
+compatibility_flags = ["nodejs_compat"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jdecommitee"
+database_id = "832147c6-2418-4986-a48d-75be67132d41"
+
+[vars]
+JWT_SECRET = "change-this-to-a-secure-random-string-in-production"
+FRONTEND_URL = "http://localhost:3000"

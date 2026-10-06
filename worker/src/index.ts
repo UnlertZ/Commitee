@@ -9,6 +9,7 @@ import exportRoutes from './routes/export'
 
 type Bindings = {
   DB: D1Database
+  R2: R2Bucket
   JWT_SECRET: string
   FRONTEND_URL: string
 }
@@ -19,7 +20,17 @@ const app = new Hono<{ Bindings: Bindings }>()
 app.use('*', logger())
 app.use('*', async (c, next) => {
   const corsMiddleware = cors({
-    origin: [c.env.FRONTEND_URL, 'http://localhost:3000', 'http://localhost:3001'],
+    origin: (origin) => {
+      const allowed = [
+        c.env.FRONTEND_URL,
+        'http://localhost:3000',
+        'http://localhost:3001',
+      ]
+      if (!origin || allowed.some(u => origin.startsWith(u.replace(/\/$/, '')))) {
+        return origin || '*'
+      }
+      return null
+    },
     allowMethods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
     credentials: true,

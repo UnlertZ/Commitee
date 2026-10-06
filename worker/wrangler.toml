@@ -8,6 +8,13 @@ binding = "DB"
 database_name = "jdecommitee"
 database_id = "832147c6-2418-4986-a48d-75be67132d41"
 
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "r2commitee"
+
 [vars]
+# NOTE: JWT_SECRET ควร set ใน Cloudflare Dashboard > Workers > jdecommitee-worker > Settings > Variables (as Secret)
+# ไม่ควรใส่ไว้ที่นี่ใน production
 JWT_SECRET = "change-this-to-a-secure-random-string-in-production"
-FRONTEND_URL = "http://localhost:3000"
+# อัพเดตเป็น URL จริงหลัง deploy Cloudflare Pages เสร็จ เช่น https://jdecommitee.pages.dev
+FRONTEND_URL = "https://jdecommitee.pages.dev"

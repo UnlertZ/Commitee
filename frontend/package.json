@@ -44,5 +44,9 @@
     "postcss": "^8.4.49",
     "eslint": "^9",
     "eslint-config-next": "15.0.3"
+  },
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
   }
 }
